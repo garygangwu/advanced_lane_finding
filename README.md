@@ -22,9 +22,23 @@ The steps to execute this project are the following:
 
 ## Camera Calibration
 
-A chessboard is used to do the camera calibration.
+A chessboard is used to do the camera calibration, because its regular high contrast pattern makes it easy to detect shape automatically.
 
-The OpenCV function `findChessboardCorners()` and `drawChessboardCorners()` can automatically find and draw corners in an image of a chessboard pattern. 
+| Original image | Undistorted image |
+|:---:|:---:|
+|<img src="camera_cal/calibration1.jpg" width="360" alt="original Image" /> |<img src="camera_cal/calibration1_undistorted.jpg" width="360" alt="undistorted Image" />|
+
+First, a chessboard image is converted to a grayscale image. Then the OpenCV function `findChessboardCorners()` and `drawChessboardCorners()` can automatically find and draw internal corners in an image of a chessboard pattern. These internal corners of the chessboard along with their pixel ocations are fed into `cv2.calibrateCamera()`, which returns camera calibration and distortion coefficients. These can then be used as input parameters to the `cv2.undistort()` function to undo the effects of distortion on any image produced by the same camera.
+
+##### More examples
+
+|<img src="camera_cal/calibration2_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration3_recovered.jpg" width="480" alt="original Image" />|
+|---|---|
+|<img src="camera_cal/calibration4_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration5_recovered.jpg" width="480" alt="original Image" />|
+|<img src="camera_cal/calibration6_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration7_recovered.jpg" width="480" alt="original Image" />|
+|<img src="camera_cal/calibration8_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration9_recovered.jpg" width="480" alt="original Image" />|
+|<img src="camera_cal/calibration10_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration3_recovered.jpg" width="480" alt="original Image" />|
+|<img src="camera_cal/calibration11_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration12_recovered.jpg" width="480" alt="original Image" />|
 
 
 ## Files and usage
