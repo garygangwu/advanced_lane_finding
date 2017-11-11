@@ -40,6 +40,11 @@ First, a chessboard image is converted to a grayscale image. Then the OpenCV fun
 |<img src="camera_cal/calibration10_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration3_recovered.jpg" width="480" alt="original Image" />|
 |<img src="camera_cal/calibration11_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration12_recovered.jpg" width="480" alt="original Image" />|
 
+## Pipeline (single images)
+
+### 1, Image distortion correction
+
+### 2. Color and gradients transforms
 
 ## Files and usage
 * `camera_calibration_utils.py`: utility functions to do the camera calibration from the chessboard images
