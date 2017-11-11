@@ -36,13 +36,17 @@ First, a chessboard image is converted to a grayscale image. Then the OpenCV fun
 |---|---|
 |<img src="camera_cal/calibration4_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration5_recovered.jpg" width="480" alt="original Image" />|
 |<img src="camera_cal/calibration6_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration7_recovered.jpg" width="480" alt="original Image" />|
-|<img src="camera_cal/calibration8_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration9_recovered.jpg" width="480" alt="original Image" />|
-|<img src="camera_cal/calibration10_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration3_recovered.jpg" width="480" alt="original Image" />|
-|<img src="camera_cal/calibration11_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration12_recovered.jpg" width="480" alt="original Image" />|
 
 ## Pipeline (single images)
 
 ### 1, Image distortion correction
+
+With the assumption that the distortion coefficients from the same camera are consistent, I used the same calibration parameters to undistort the images during driving.
+
+| Original image | Undistorted image |
+|:---:|:---:|
+|<img src="test_images/test6.jpg" width="360" alt="original Image" /> |<img src="test_images/test6_undistorted.jpg" width="360" alt="undistorted Image" />|
+
 
 ### 2. Color and gradients transforms
 
