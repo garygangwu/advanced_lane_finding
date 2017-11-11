@@ -45,7 +45,7 @@ With the assumption that the distortion coefficients from the same camera are co
 
 | Original image | Undistorted image |
 |:---:|:---:|
-|<img src="test_images/test6.jpg" width="360" alt="original Image" /> |<img src="test_images/test6_undistorted.jpg" width="360" alt="undistorted Image" />|
+|<img src="test_images/test5.jpg" width="360" alt="original Image" /> |<img src="test_images/test5_undistorted.jpg" width="360" alt="undistorted Image" />|
 
 
 ### 2. Color and gradients transforms
