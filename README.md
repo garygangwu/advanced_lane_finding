@@ -22,3 +22,10 @@ The steps to execute this project are the following:
 
 ## Camera Calibration
 
+A chessboard is used to do the camera calibration.
+
+The OpenCV function `findChessboardCorners()` and `drawChessboardCorners()` can automatically find and draw corners in an image of a chessboard pattern. 
+
+
+## Files and usage
+* `camera_calibration_utils.py`: utility functions to do the camera calibration from the chessboard images
