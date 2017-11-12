@@ -116,8 +116,8 @@ def process_image(orginal_image):
   front_view_lane_img = get_front_view_transformed_image(bird_view_lane_image)
   overlay_image = cv2.addWeighted(undistorted_image, 1, front_view_lane_img, 1, 0)
 
-  cv2.putText(overlay_image, curvature_status, (10,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (200,200,0), 2)
-  cv2.putText(overlay_image, deviation_status, (10,90), cv2.FONT_HERSHEY_SIMPLEX, 1, (200,200,0), 2)
+  cv2.putText(overlay_image, curvature_status, (10,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (200,0,0), 2)
+  cv2.putText(overlay_image, deviation_status, (10,90), cv2.FONT_HERSHEY_SIMPLEX, 1, (200,0,0), 2)
 
   return concatenate_images(
     orginal_image, undistorted_image, overlay_image,
@@ -125,8 +125,8 @@ def process_image(orginal_image):
 
 
 video_file_names = [
-  'challenge_video.mp4'
-#  'project_video.mp4',
+  'challenge_video.mp4',
+  'project_video.mp4'
 #  'harder_challenge_video.mp4'
 ]
 
