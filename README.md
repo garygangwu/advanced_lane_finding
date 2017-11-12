@@ -145,6 +145,14 @@ The code of the main pipeline can be found in [finding_lanes.py](https://github.
 
 ---
 
+## Pipeline (video)
+
+* [Challenge_video - Youtube](https://youtu.be/4ly1T2cCRLU)
+* [Project Video (easy one) - Youtube](https://youtu.be/33gyWJF9V1k)
+* MP4 files are available at this [output_videos](https://github.com/garygangwu/advanced_lane_finding/tree/master/output_videos) github fold
+
+---
+
 ## Files and usage
 * `camera_calibration_utils.py`: library to do the camera calibration from the chessboard images
 * `image_transform_utils.py`: library for the color and gradient transforms
@@ -154,3 +162,5 @@ The code of the main pipeline can be found in [finding_lanes.py](https://github.
 
 #### Usage
 `python finding_lanes.py`
+
+---
