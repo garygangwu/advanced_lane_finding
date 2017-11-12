@@ -64,7 +64,7 @@ This is one of most tedious steps, as I have to explore various threasholds and 
 
 To speed up my evaluations, I developed a set of color and gradients transform utility functions in [image_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/image_transform_utils.py) to find proper thresholds and tranform combination to detect lanes while minimzing the road noises due to the shadows, road cracks, and pavement changes.
 
-#### Examples of color and gradients transform results that have been evaluated
+#### Examples of color and gradients transform results that have been evaluated but abandoned
 
 | RGB (color filtered) |Soblex (with threshold) | Mag (with threshold) | Dir (with threshold)|
 |:---:|:---:|:---:|:---:|
