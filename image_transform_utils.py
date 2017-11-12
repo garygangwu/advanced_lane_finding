@@ -94,7 +94,7 @@ def filter_colors_hls(rgb_img, keep_yellow = True, keep_white = True):
   mask = np.zeros(rgb_img.shape[:2], dtype=np.uint8)
 
   if keep_yellow:
-    yellow_dark = np.array([ 20, 120, 80])
+    yellow_dark = np.array([ 20, 120, 30])
     yellow_light = np.array([ 40,255,255])
     yellow_mask = cv2.inRange(converted_img, yellow_dark, yellow_light)
     mask = mask | yellow_mask

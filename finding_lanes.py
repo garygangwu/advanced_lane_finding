@@ -4,18 +4,17 @@ from perspective_transform_utils import *
 from lane_line import *
 from moviepy.editor import VideoFileClip
 
-first = True
+DEBUG_MODE = False
 
 def convert_image_to_color_binary(image, threshold = (20, 255)):
-  #hls_filtered_img = filter_colors_hls(image)
-  hsv_filtered_img = filter_colors_hsv(image)
+  hls_filtered_img = filter_colors_hls(image, keep_yellow = True, keep_white = False)
+  hsv_filtered_img = filter_colors_hsv(image, keep_yellow = False, keep_white = True)
   #rgb_filtered_img = filter_colors_rgb(image)
 
-  #hls_filtered_gray_img = cv2.cvtColor(hls_filtered_img, cv2.COLOR_BGR2GRAY)
+  hls_filtered_gray_img = cv2.cvtColor(hls_filtered_img, cv2.COLOR_BGR2GRAY)
   hsv_filtered_gray_img = cv2.cvtColor(hsv_filtered_img, cv2.COLOR_BGR2GRAY)
   #rgb_filtered_gray_img = cv2.cvtColor(rgb_filtered_img, cv2.COLOR_BGR2GRAY)
-  #combined_filtered_gray_img = hls_filtered_gray_img | hsv_filtered_gray_img #| rgb_filtered_gray_img
-  combined_filtered_gray_img = hsv_filtered_gray_img
+  combined_filtered_gray_img = hls_filtered_gray_img | hsv_filtered_gray_img
 
   thresh_min = threshold[0]
   thresh_max = threshold[1]
@@ -25,10 +24,10 @@ def convert_image_to_color_binary(image, threshold = (20, 255)):
     (combined_filtered_gray_img <= thresh_max)
   ] = 1
 
-  #plt.imsave('output_videos/2_hls_filtered_gray.jpg', hls_filtered_gray_img)
-  #plt.imsave('output_videos/2_hsv_filtered_gray.jpg', hsv_filtered_gray_img)
-  #plt.imsave('output_videos/2_rgb_filtered_gray.jpg', rgb_filtered_gray_img)
-  #plt.imsave('output_videos/2_combined_filtered_gray.jpg', combined_filtered_gray_img)
+  if DEBUG_MODE:
+    plt.imsave('output_videos/2_hls_filtered_gray.jpg', hls_filtered_gray_img)
+    plt.imsave('output_videos/2_hsv_filtered_gray.jpg', hsv_filtered_gray_img)
+    plt.imsave('output_videos/2_combined_filtered_gray.jpg', combined_filtered_gray_img)
   return binary
 
 def convert_image_to_gradient_binary(image):
@@ -53,21 +52,23 @@ def convert_image_to_gradient_binary(image):
 
   masked_edges = region_of_interest(gradient_comb, vertices)
 
-  plt.imsave('output_videos/3_sobel_x.jpg', sobel_x * 255)
-  plt.imsave('output_videos/3_mag_img.jpg', mag_img * 255)
-  plt.imsave('output_videos/3_dir_img.jpg', dir_img * 255)
-  plt.imsave('output_videos/3_gradient_comb.jpg', gradient_comb * 255)
-  plt.imsave('output_videos/3_masked_edges.jpg', masked_edges * 255)
+  if DEBUG_MODE:
+    plt.imsave('output_videos/3_sobel_x.jpg', sobel_x * 255)
+    plt.imsave('output_videos/3_mag_img.jpg', mag_img * 255)
+    plt.imsave('output_videos/3_dir_img.jpg', dir_img * 255)
+    plt.imsave('output_videos/3_gradient_comb.jpg', gradient_comb * 255)
+    plt.imsave('output_videos/3_masked_edges.jpg', masked_edges * 255)
   return masked_edges
 
 
 def concatenate_images(
       orginal_image, undistorted_image, overlay_image,
       color_binary, bird_view_debug_image, bird_view_lane_image):
-  plt.imsave('output_videos/1_orginal_image.jpg', orginal_image)
-  plt.imsave('output_videos/6_output_debug_image.jpg', bird_view_debug_image)
-  plt.imsave('output_videos/6_output_lane_image.jpg', bird_view_lane_image)
-  plt.imsave('output_videos/6_overlay_image.jpg', overlay_image)
+  if DEBUG_MODE:
+    plt.imsave('output_videos/1_orginal_image.jpg', orginal_image)
+    plt.imsave('output_videos/6_output_debug_image.jpg', bird_view_debug_image)
+    plt.imsave('output_videos/6_output_lane_image.jpg', bird_view_lane_image)
+    plt.imsave('output_videos/6_overlay_image.jpg', overlay_image)
 
   gradient_binary = mag_thresh(cv2.cvtColor(undistorted_image, cv2.COLOR_BGR2GRAY))
 
@@ -97,7 +98,8 @@ def concatenate_images(
   bottom_side_image = np.concatenate((bottom_side_image, resized_cololr_filtered_image), axis=1)
   output_image = np.concatenate((upper_side_image, bottom_side_image), axis=0)
 
-  plt.imsave('output_videos/6_output_image.jpg', output_image)
+  if DEBUG_MODE:
+    plt.imsave('output_videos/7_output_image.jpg', output_image)
   return output_image
 
 
