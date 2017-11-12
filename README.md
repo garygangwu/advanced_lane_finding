@@ -88,11 +88,18 @@ The code for my perspective transform is inside [perspective_transform_utils.py]
 
 ### 4. Identify lane-line pixels and match their positions with a polynomial
 
+| Draw the polynomials | Highligh the lane | Perspective transform back |
+|:---:|:---:|:---:|
+|<img src="test_images/test5_bird_view_debug_image.jpg" width="360"/>|<img src="test_images/test5_bird_view_lane_image.jpg" width="360"/>|<img src="test_images/test5_front_view_lane_image.jpg" width="360"/>|
 
 
 ### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
+
+
 ### 6. Plot the results back to front-facing image
+
+<img src="test_images/test5_bird_view_overlay_image_with_words.jpg" />
 
 ## Files and usage
 * `camera_calibration_utils.py`: utility functions to do the camera calibration from the chessboard images
