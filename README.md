@@ -127,7 +127,7 @@ right_curverad = ((1 + (2*right_fit_cr[0]*np.max(lefty) + right_fit_cr[1])**2)**
                                 /np.absolute(2*right_fit_cr[0])
 ```
 
-Assume the camera position in the center middle of the car, the middle of the image maps to the car center. The deviation can be calculated as the difference between the center of picture and the center of the lane
+Assume the camera is installed in the center middle of the car, the middle of the image maps to the car center. The deviation can be calculated as the difference between the center of picture and the center of the lane
 
 ```
 center_lane = (right_startx + left_startx) / 2
@@ -146,4 +146,11 @@ The code of the main pipeline can be found in [finding_lanes.py](https://github.
 ---
 
 ## Files and usage
-* `camera_calibration_utils.py`: utility functions to do the camera calibration from the chessboard images
+* `camera_calibration_utils.py`: library to do the camera calibration from the chessboard images
+* `image_transform_utils.py`: library for the color and gradient transforms
+* `perspective_transform_utils.py`: library for perspective transformation
+* `lane_line.py`: library for detecting, tracking, and highlighing the lane lines
+* `finding_lanes.py`: pipeline to process each frame from the input video
+
+#### Usage
+`python finding_lanes.py`
