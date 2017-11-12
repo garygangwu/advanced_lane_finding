@@ -88,15 +88,28 @@ The code for my perspective transform is inside [perspective_transform_utils.py]
 |:---:|:---:|:---:|
 |<img src="test_images/test5_undistorted_with_ploylines.jpg" width="360"/>|<img src="test_images/test5_bird_view.jpg" width="360"/>|<img src="test_images/test5_bird_view_binary.jpg" width="360"/>|
 
-### 4. Identify lane-line pixels and match their positions with a polynomial
+### 4. Locate the Lane Lines and Fit a Polynomial
+
+With a binary image, the next step is to explicitly determine which pixels belong to the left and right line. A histogram along all the columns in the lower half of the image is drawed below. The two most prominent peaks in this histogram will be good indicators of the x-position of the base of the lane lines. This is a starting point for where to search for the lines. From that point, a sliding window is placed around the line centers and the next window can follow the pixel density curve up to the top of the frame.
 
 | pixel histogram of the bottom half of the image | Sliding windows to capture lane pixels |
 |:---:|:---:|
 |<img src="test_images/test5_histogram.png" width="360"/>|<img src="test_images/test5_bird_view_debug_windows.jpg" width="360"/>|
 
-| Draw the polynomials | Highlight the lane | Perspective transform back |
+After all the points captured in the left side sliding windows and the right side sliding windows, I can fit a second order polynomial to each line.
+
+```
+left_fit = np.polyfit(lefty, leftx, 2)
+right_fit = np.polyfit(righty, rightx, 2)
+```
+
+| Draw the polynomials | Highlight the lane | Inverse perspective transform |
 |:---:|:---:|:---:|
 |<img src="test_images/test5_bird_view_debug_image.jpg" width="360"/>|<img src="test_images/test5_bird_view_lane_image.jpg" width="360"/>|<img src="test_images/test5_front_view_lane_image.jpg" width="360"/>|
+
+In addition, the sliding window approach only needs to be adopted in the first frame. Since consecutive frames are likely to have lane lines in roughly similar positions, we search around a margin of 100 pixels of the previously detected lane lines.
+
+The related code can be found in [lane_line.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/lane_line.py)
 
 
 ### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
@@ -105,7 +118,11 @@ The code for my perspective transform is inside [perspective_transform_utils.py]
 
 ### 6. Plot the results back to front-facing image
 
-<img src="test_images/test5_bird_view_overlay_image_with_words.jpg" />
+Finally, we can overlay the detected lane image along with curvature and vehicle postion onto the undistorted frame.
+
+<img src="test_images/test5_front_view_lane_image.jpg" width="360"/>
+
+The code of the main pipeline can be found in [finding_lanes.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/finding_lanes.py)
 
 ---
 
