@@ -49,11 +49,19 @@ With the assumption that the distortion coefficients from the same camera are co
 
 | Original image | Undistorted image |
 |:---:|:---:|
-|<img src="test_images/test5.jpg" width="360" alt="original Image" /> |<img src="test_images/test5_undistorted.jpg" width="360" alt="undistorted Image" />|
+|<img src="test_images/test5.jpg" width="360" alt="original Image" />|<img src="test_images/test5_undistorted.jpg" width="360" alt="undistorted Image" />|
 
 ### 2. Color and gradients transforms
 
-I developed a set of color and gradients transform utility functions in [image_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/image_transform_utils.py) to speed up my experiments to find proper thresholds and method combination to detect lanes while minimzing the road noices 
+I developed a set of color and gradients transform utility functions in [image_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/image_transform_utils.py) to speed up my experiments to find proper thresholds and method combination to detect lanes while minimzing the road noises due to the shadows, road cracks, and pavement changes.
+
+#### Color Transform and filtering
+
+| Transform Method | Cololr Filtering Threshold | Result |
+|:---:|:---|:---:|
+|HSV|Yellow: ([15,127,127], [25,255,255]) <br>White: ([0,0,200], [255,30,255])|<img src="test_images/test5_hls.jpg" width="360"/>|
+|HLS|Yellow: ([20,120,80], [40,255,255]) <br>White: ([0,200,0], [255,255,255])|<img src="test_images/test5_hsv.jpg" width="360"/>|
+|RGB|Yellow: ([180,180,0], [255,255,170]) <br>White: ([100,100,200], [255,255,255])|<img src="test_images/test5_rgb.jpg" width="360"/>|
 
 ### 3. Perspective transform
 
