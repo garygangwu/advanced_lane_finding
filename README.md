@@ -72,7 +72,23 @@ To speed up my evaluations, I developed a set of color and gradients transform u
 
 ### 3. Perspective transform
 
+The code for my perspective transform is inside [perspective_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/perspective_transform_utils.py) with the source and destination points selected as below. These points are evaluated empirically to ensure the lanes are well covered from a bird view
+
+| Source        | Destination   | 
+|:-------------:|:-------------:| 
+| 550, 477      | 320, 0        | 
+| 160, 720      | 320, 720      |
+| 1120, 720     | 960, 720      |
+| 730, 477      | 960, 0        |
+
+
+| Undistorted image | Warped Image | Warped Binary |
+|:---:|:---:|:---:|
+|<img src="test_images/test5_undistorted_with_ploylines.jpg" width="360"/>|<img src="test_images/test5_bird_view.jpg" width="360"/>|<img src="test_images/test5_bird_view_binary.jpg" width="360"/>|
+
 ### 4. Identify lane-line pixels and match their positions with a polynomial
+
+
 
 ### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
