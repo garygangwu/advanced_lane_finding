@@ -90,11 +90,11 @@ The code for my perspective transform is inside [perspective_transform_utils.py]
 
 ### 4. Identify lane-line pixels and match their positions with a polynomial
 
-| Lane pixel histogram | Highligh the lane |
+| pixel histogram of the bottom half of the image | Sliding windows to capture lane pixels |
 |:---:|:---:|
 |<img src="test_images/test5_histogram.png" width="360"/>|<img src="test_images/test5_bird_view_debug_windows.jpg" width="360"/>|
 
-| Draw the polynomials | Highligh the lane | Perspective transform back |
+| Draw the polynomials | Highlight the lane | Perspective transform back |
 |:---:|:---:|:---:|
 |<img src="test_images/test5_bird_view_debug_image.jpg" width="360"/>|<img src="test_images/test5_bird_view_lane_image.jpg" width="360"/>|<img src="test_images/test5_front_view_lane_image.jpg" width="360"/>|
 
