@@ -114,7 +114,26 @@ The related code can be found in [lane_line.py](https://github.com/garygangwu/ad
 
 ### 5. Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
+The radius of curvature is based on pixel values, which is not the same as real world space. Therefore we need to translate them back to the real word measurement standard.  
 
+```
+ym_per_pix = 30./720 # meters per pixel in y dimension
+xm_per_pix = 3.7/700 # meteres per pixel in x dimension
+left_fit_cr = np.polyfit(lefty*ym_per_pix, leftx*xm_per_pix, 2)
+right_fit_cr = np.polyfit(righty*ym_per_pix, rightx*xm_per_pix, 2)
+left_curverad = ((1 + (2*left_fit_cr[0]*np.max(lefty) + left_fit_cr[1])**2)**1.5) \
+                             /np.absolute(2*left_fit_cr[0])
+right_curverad = ((1 + (2*right_fit_cr[0]*np.max(lefty) + right_fit_cr[1])**2)**1.5) \
+                                /np.absolute(2*right_fit_cr[0])
+```
+
+Assume the camera position in the center middle of the car, the middle of the image maps to the car center. The deviation can be calculated as the difference between the center of picture and the center of the lane
+
+```
+center_lane = (right_startx + left_startx) / 2
+center_car = image.shape[1] / 2
+deviation = abs(center_lane - center_car) * xm_per_pix
+```
 
 ### 6. Plot the results back to front-facing image
 
