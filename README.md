@@ -53,15 +53,25 @@ With the assumption that the distortion coefficients from the same camera are co
 
 ### 2. Color and gradients transforms
 
-I developed a set of color and gradients transform utility functions in [image_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/image_transform_utils.py) to speed up my experiments to find proper thresholds and method combination to detect lanes while minimzing the road noises due to the shadows, road cracks, and pavement changes.
+This is one of most tedious steps, as I have to explore various threasholds and tranform combinations and then evaluate the results. In the end, I only used HLS and HSV color transformation to detect yellow and white lanes.
 
-#### Color Transform and filtering
+#### Color transform steps
 
-| Transform Method | Cololr Filtering Threshold | Result |
-|:---:|:---|:---:|
-|HSV|Yellow: ([15,127,127], [25,255,255]) <br>White: ([0,0,200], [255,30,255])|<img src="test_images/test5_hls.jpg" width="360"/>|
-|HLS|Yellow: ([20,120,80], [40,255,255]) <br>White: ([0,200,0], [255,255,255])|<img src="test_images/test5_hsv.jpg" width="360"/>|
-|RGB|Yellow: ([180,180,0], [255,255,170]) <br>White: ([100,100,200], [255,255,255])|<img src="test_images/test5_rgb.jpg" width="360"/>|
+| Step | Method | Threshold | Result |
+|:---|:---|:---|:---|
+| 1 | Convert the image to HLS color space, and extract yellow color | Yellow: ([20,120,30], [40,255,255]) |<img src="test_images/test5_hls.jpg" width="360"/>|
+| 2 | Convert the image to HSV color space, and extract white color | Yellow: ([0,0,200], [255,30,255]) |<img src="test_images/test5_hls.jpg" width="360"/>|
+| 3 | Convert HLS/HSV results to Grayscale and then merge them | Grayscale: (20, 255) |<img src="test_images/test5_hls.jpg" width="360"/>|
+
+To speed up my evaluations, I developed a set of color and gradients transform utility functions in [image_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/image_transform_utils.py) to find proper thresholds and tranform combination to detect lanes while minimzing the road noises due to the shadows, road cracks, and pavement changes.
+
+#### Examples of color and gradients transform results that have been evaluated
+
+| HLS | HSV | RGB |
+|:---:|:---:|:---:|
+|<img src="test_images/test5_hls.jpg" width="360"/>|<img src="test_images/test5_hsv.jpg" width="360"/>|<img src="test_images/test5_rgb.jpg" width="360"/>|
+| Soblex | Sobley | Mag |
+|<img src="test_images/test5_hls.jpg" width="360"/>|<img src="test_images/test5_hsv.jpg" width="360"/>|<img src="test_images/test5_rgb.jpg" width="360"/>|
 
 ### 3. Perspective transform
 
