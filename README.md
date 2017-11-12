@@ -40,6 +40,8 @@ First, a chessboard image is converted to a grayscale image. Then the OpenCV fun
 |---|---|
 |<img src="camera_cal/calibration4_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration5_recovered.jpg" width="480" alt="original Image" />|
 
+---
+
 ## Pipeline (single images)
 
 ### 1, Image distortion correction
@@ -88,6 +90,10 @@ The code for my perspective transform is inside [perspective_transform_utils.py]
 
 ### 4. Identify lane-line pixels and match their positions with a polynomial
 
+| Lane pixel histogram | Highligh the lane |
+|:---:|:---:|
+|<img src="test_images/test5_histogram.png" width="360"/>|<img src="test_images/test5_bird_view_debug_windows.jpg" width="360"/>|
+
 | Draw the polynomials | Highligh the lane | Perspective transform back |
 |:---:|:---:|:---:|
 |<img src="test_images/test5_bird_view_debug_image.jpg" width="360"/>|<img src="test_images/test5_bird_view_lane_image.jpg" width="360"/>|<img src="test_images/test5_front_view_lane_image.jpg" width="360"/>|
@@ -100,6 +106,8 @@ The code for my perspective transform is inside [perspective_transform_utils.py]
 ### 6. Plot the results back to front-facing image
 
 <img src="test_images/test5_bird_view_overlay_image_with_words.jpg" />
+
+---
 
 ## Files and usage
 * `camera_calibration_utils.py`: utility functions to do the camera calibration from the chessboard images
