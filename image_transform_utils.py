@@ -86,56 +86,66 @@ def gradient_combine(img, th_x, th_y, th_mag, th_dir):
   return gradient_comb
 
 
-def filter_colors_hls(rgb_img):
+def filter_colors_hls(rgb_img, keep_yellow = True, keep_white = True):
   """
   Only keep the white and yellow color in HLS color space
   """
   converted_img = cv2.cvtColor(rgb_img, cv2.COLOR_RGB2HLS)
+  mask = np.zeros(rgb_img.shape[:2], dtype=np.uint8)
 
-  yellow_dark = np.array([ 20, 120, 30])
-  yellow_light = np.array([ 40,255,255])
-  yellow_mask = cv2.inRange(converted_img, yellow_dark, yellow_light)
+  if keep_yellow:
+    yellow_dark = np.array([ 20, 120, 80])
+    yellow_light = np.array([ 40,255,255])
+    yellow_mask = cv2.inRange(converted_img, yellow_dark, yellow_light)
+    mask = mask | yellow_mask
 
-  #white_dark = np.array([  0, 200, 0])
-  #white_light = np.array([255,255,255])
-  #white_mask = cv2.inRange(converted_img, white_dark, white_light)
-  #mask = cv2.bitwise_or(yellow_mask, white_mask)
-
-  mask = yellow_mask
+  if keep_white:
+    white_dark = np.array([  0, 200, 0])
+    white_light = np.array([255,255,255])
+    white_mask = cv2.inRange(converted_img, white_dark, white_light)
+    mask = mask | white_mask
 
   return cv2.bitwise_and(converted_img, converted_img, mask = mask)
 
 
-def filter_colors_hsv(rgb_img):
+def filter_colors_hsv(rgb_img, keep_yellow = True, keep_white = True):
   """
   Only keep the white and yellow color in HSV color space
   """
   converted_img = cv2.cvtColor(rgb_img, cv2.COLOR_RGB2HSV)
-  #yellow_dark = np.array([15, 127, 127], dtype=np.uint8)
-  #yellow_light = np.array([25, 255, 255], dtype=np.uint8)
-  #yellow_mask = cv2.inRange(converted_img, yellow_dark, yellow_light)
+  mask = np.zeros(rgb_img.shape[:2], dtype=np.uint8)
 
-  white_dark = np.array([0, 0, 200], dtype=np.uint8)
-  white_light = np.array([255, 30, 255], dtype=np.uint8)
-  white_mask = cv2.inRange(converted_img, white_dark, white_light)
-  #mask = cv2.bitwise_or(yellow_mask, white_mask)
-  mask = white_mask
-  img = cv2.bitwise_and(converted_img, converted_img, mask=mask)
-  return img
+  if keep_yellow:
+    yellow_dark = np.array([15, 127, 127], dtype=np.uint8)
+    yellow_light = np.array([25, 255, 255], dtype=np.uint8)
+    yellow_mask = cv2.inRange(converted_img, yellow_dark, yellow_light)
+    mask = mask | yellow_mask
+
+  if keep_white:
+    white_dark = np.array([0, 0, 200], dtype=np.uint8)
+    white_light = np.array([255, 30, 255], dtype=np.uint8)
+    white_mask = cv2.inRange(converted_img, white_dark, white_light)
+    mask = mask | white_mask
+
+  return cv2.bitwise_and(converted_img, converted_img, mask=mask)
 
 
-def filter_colors_rgb(rgb_img):
+def filter_colors_rgb(rgb_img, keep_yellow = True, keep_white = True):
   """
   Only keep the white and yellow color in RGB color space
   """
-  yellow_dark = np.array([50, 50, 80], dtype=np.uint8)
-  yellow_light = np.array([80, 80, 100], dtype=np.uint8)
-  yellow_mask = cv2.inRange(rgb_img, yellow_dark, yellow_light)
+  mask = np.zeros(rgb_img.shape[:2], dtype=np.uint8)
 
-  white_dark = np.array([100, 100, 200], dtype=np.uint8)
-  white_light = np.array([255, 255, 255], dtype=np.uint8)
-  white_mask = cv2.inRange(rgb_img, white_dark, white_light)
-  mask = cv2.bitwise_or(yellow_mask, white_mask)
-  #mask = white_mask
-  img = cv2.bitwise_and(rgb_img, rgb_img, mask=mask)
-  return img
+  if keep_yellow:
+    yellow_dark = np.array([180, 180, 0], dtype=np.uint8)
+    yellow_light = np.array([255, 255, 170], dtype=np.uint8)
+    yellow_mask = cv2.inRange(rgb_img, yellow_dark, yellow_light)
+    mask = mask | yellow_mask
+
+  if keep_white:
+    white_dark = np.array([100, 100, 200], dtype=np.uint8)
+    white_light = np.array([255, 255, 255], dtype=np.uint8)
+    white_mask = cv2.inRange(rgb_img, white_dark, white_light)
+    mask = mask | white_mask
+
+  return cv2.bitwise_and(rgb_img, rgb_img, mask=mask)

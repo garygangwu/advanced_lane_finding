@@ -7,14 +7,15 @@ from moviepy.editor import VideoFileClip
 first = True
 
 def convert_image_to_color_binary(image, threshold = (20, 255)):
-  hls_filtered_img = filter_colors_hls(image)
+  #hls_filtered_img = filter_colors_hls(image)
   hsv_filtered_img = filter_colors_hsv(image)
   #rgb_filtered_img = filter_colors_rgb(image)
 
-  hls_filtered_gray_img = cv2.cvtColor(hls_filtered_img, cv2.COLOR_BGR2GRAY)
+  #hls_filtered_gray_img = cv2.cvtColor(hls_filtered_img, cv2.COLOR_BGR2GRAY)
   hsv_filtered_gray_img = cv2.cvtColor(hsv_filtered_img, cv2.COLOR_BGR2GRAY)
   #rgb_filtered_gray_img = cv2.cvtColor(rgb_filtered_img, cv2.COLOR_BGR2GRAY)
-  combined_filtered_gray_img = hls_filtered_gray_img | hsv_filtered_gray_img #| rgb_filtered_gray_img
+  #combined_filtered_gray_img = hls_filtered_gray_img | hsv_filtered_gray_img #| rgb_filtered_gray_img
+  combined_filtered_gray_img = hsv_filtered_gray_img
 
   thresh_min = threshold[0]
   thresh_max = threshold[1]
@@ -122,9 +123,9 @@ def process_image(orginal_image):
 
 
 video_file_names = [
-#  'challenge_video.mp4',
+  'challenge_video.mp4'
 #  'project_video.mp4',
-  'harder_challenge_video.mp4'
+#  'harder_challenge_video.mp4'
 ]
 
 for video_file_name in video_file_names:
