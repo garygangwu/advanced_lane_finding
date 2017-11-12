@@ -39,7 +39,6 @@ First, a chessboard image is converted to a grayscale image. Then the OpenCV fun
 |<img src="camera_cal/calibration2_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration3_recovered.jpg" width="480" alt="original Image" />|
 |---|---|
 |<img src="camera_cal/calibration4_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration5_recovered.jpg" width="480" alt="original Image" />|
-|<img src="camera_cal/calibration6_recovered.jpg" width="480" alt="original Image" />|<img src="camera_cal/calibration7_recovered.jpg" width="480" alt="original Image" />|
 
 ## Pipeline (single images)
 
@@ -59,9 +58,9 @@ This is one of most tedious steps, as I have to explore various threasholds and 
 
 | Step | Method | Threshold | Result |
 |:---|:---|:---|:---|
-| 1 | Convert the image to HLS color space, and extract yellow color | Yellow: ([20,120,30], [40,255,255]) |<img src="test_images/test5_hls.jpg" width="360"/>|
-| 2 | Convert the image to HSV color space, and extract white color | Yellow: ([0,0,200], [255,30,255]) |<img src="test_images/test5_hls.jpg" width="360"/>|
-| 3 | Convert HLS/HSV results to Grayscale and then merge them | Grayscale: (20, 255) |<img src="test_images/test5_hls.jpg" width="360"/>|
+| 1 | Convert the image to HLS color space, and extract yellow color | Yellow: ([20,120,30], [40,255,255]) |<img src="test_images/test5_hls_yellow.jpg" width="360"/>|
+| 2 | Convert the image to HSV color space, and extract white color | White: ([0,0,200], [255,30,255]) |<img src="test_images/test5_hsv_white.jpg" width="360"/>|
+| 3 | Convert HLS/HSV results to grayscale and then merge them | Grayscale: (20, 255) |<img src="test_images/test5_gray_binary.jpg" width="360"/>|
 
 To speed up my evaluations, I developed a set of color and gradients transform utility functions in [image_transform_utils.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/image_transform_utils.py) to find proper thresholds and tranform combination to detect lanes while minimzing the road noises due to the shadows, road cracks, and pavement changes.
 
