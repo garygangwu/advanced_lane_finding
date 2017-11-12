@@ -66,11 +66,9 @@ To speed up my evaluations, I developed a set of color and gradients transform u
 
 #### Examples of color and gradients transform results that have been evaluated
 
-| HLS (color filtered) | HSV (color filtered) | RGB (color filtered) |
-|:---:|:---:|:---:|
-|<img src="test_images/test5_hls.jpg" width="360"/>|<img src="test_images/test5_hsv.jpg" width="360"/>|<img src="test_images/test5_rgb.jpg" width="360"/>|
-| Soblex (with threshold) | Mag (with threshold) | Dir (with threshold)|
-|<img src="test_images/test5_sobel_x.jpg" width="360"/>|<img src="test_images/test5_mag.jpg" width="360"/>|<img src="test_images/test5_dir.jpg" width="360"/>|
+| RGB (color filtered) |Soblex (with threshold) | Mag (with threshold) | Dir (with threshold)|
+|:---:|:---:|:---:|:---:|
+|<img src="test_images/test5_hls.jpg" width="360"/>|<img src="test_images/test5_hsv.jpg" width="360"/>|<img src="test_images/test5_rgb.jpg" width="360"/>|<img src="test_images/test5_sobel_x.jpg" width="360"/>|<img src="test_images/test5_mag.jpg" width="360"/>|<img src="test_images/test5_dir.jpg" width="360"/>|
 
 ### 3. Perspective transform
 
