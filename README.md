@@ -164,3 +164,10 @@ The code of the main pipeline can be found in [finding_lanes.py](https://github.
 `python finding_lanes.py`
 
 ---
+
+## Discussion
+
+* <b>Unexpected large workload in tuning gradient and color channnel thresholds</b>: The video pipeline developed in this project handle two sample videos, but fail in the the harder challenge video. It is a large workload to find a proper combination, and I doublt that there is one set of thresholds apply to all kinds of road conditions.
+
+* <b>Pure computer vision techniques alone may not be good enough for effective lane detection in the real world</b>. We may need to combind with other technologies, such as lidar, HD map, and deep learning on lane line identification, to offer a safer lane detection system
+
