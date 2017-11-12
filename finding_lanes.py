@@ -127,7 +127,6 @@ def process_image(orginal_image):
 video_file_names = [
   'challenge_video.mp4',
   'project_video.mp4'
-#  'harder_challenge_video.mp4'
 ]
 
 for video_file_name in video_file_names:
