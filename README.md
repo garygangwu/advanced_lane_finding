@@ -120,7 +120,7 @@ The related code can be found in [lane_line.py](https://github.com/garygangwu/ad
 
 Finally, we can overlay the detected lane image along with curvature and vehicle postion onto the undistorted frame.
 
-<img src="test_images/test5_front_view_lane_image.jpg" width="360"/>
+<img src="test_images/test5_bird_view_overlay_image_with_words.jpg" />
 
 The code of the main pipeline can be found in [finding_lanes.py](https://github.com/garygangwu/advanced_lane_finding/blob/master/finding_lanes.py)
 
